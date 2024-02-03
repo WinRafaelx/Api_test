@@ -1,12 +1,14 @@
-import React from 'react'
-import Navbar from '../components/Navbar'
+import React from "react";
+import Navbar from "../components/Navbar";
+import Airing from "../components/Homepage/Airing";
 
 function Airingpage() {
   return (
     <div>
-        <Navbar />
-        Airingpage</div>
-  )
+      <Navbar />
+      <Airing />
+    </div>
+  );
 }
 
-export default Airingpage
+export default Airingpage;

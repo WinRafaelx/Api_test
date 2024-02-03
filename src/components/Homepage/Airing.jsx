@@ -5,10 +5,10 @@ import Grid from "@mui/material/Grid";
 import { Typography } from "@mui/material";
 import { StyledImage, buttonStyles } from "./Styled";
 
-export default function Upcoming() {
+export default function Airing() {
   const {
-    upcomingAnime,
-    getUpcomingAnime,
+    airingAnime,
+    getAiringAnime,
     addFavorite,
     removeFavorite,
     favorites,
@@ -17,14 +17,12 @@ export default function Upcoming() {
   const [favoritedAnimeIds, setFavoritedAnimeIds] = React.useState([]);
 
   useEffect(() => {
-    getUpcomingAnime();
+    getAiringAnime();
   }, [])
 
   useEffect(() => {
     setFavoritedAnimeIds(favorites.map((favorite) => favorite.id));
   }, [favorites, addFavorite, removeFavorite]);
-
-  console.log(upcomingAnime);
 
   const handleAddFavorite = (animeId, imageUrl) => {
     addFavorite(animeId, imageUrl);
@@ -37,7 +35,7 @@ export default function Upcoming() {
   };
 
   const conditionalRender = () => {
-    return upcomingAnime?.map((anime) => (
+    return airingAnime?.map((anime) => (
       <Grid
         item
         key={anime.mal_id}
