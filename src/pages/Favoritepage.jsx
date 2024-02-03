@@ -1,8 +1,12 @@
 import React from 'react'
+import Navbar from '../components/Navbar'
 
 function Favoritepage() {
   return (
-    <div>Favoritepage</div>
+    <div>
+        <Navbar />
+        Favoritepage
+    </div>
   )
 }
 

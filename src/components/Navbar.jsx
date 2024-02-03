@@ -6,54 +6,69 @@ import WhatshotIcon from "@mui/icons-material/Whatshot";
 import TvIcon from "@mui/icons-material/Tv";
 import ScheduleIcon from "@mui/icons-material/Schedule";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export default function Navbar() {
   const location = useLocation();
-  const [value, setValue] = React.useState(0);
+  const navigate = useNavigate();
+
+  const isActive = (route) =>
+    route === "/" ? location.pathname === route : location.pathname.startsWith(route);
 
   useEffect(() => {
-    const path = location.pathname;
-
-    if (path.includes("/popular")) {
-      setValue(0);
-    } else if (path.includes("/onair")) {
-      setValue(1);
-    } else if (path.includes("/upcoming")) {
-      setValue(2);
-    } else if (path.includes("/favorites")) {
-      setValue(3);
-    }
+    if (isActive("/")) setValue(0);
+    else if (isActive("/airing")) setValue(1);
+    else if (isActive("/upcoming")) setValue(2);
+    else if (isActive("/favorites")) setValue(3);
   }, [location.pathname]);
+
+  const [value, setValue] = React.useState(0);
+
   return (
     <Box>
       <BottomNavigation
         showLabels
-        value={value}
-        onChange={(event, newValue) => {
-          setValue(newValue);
-        }}
         sx={{ width: "100%", backgroundColor: "#010307", py: 4 }}
       >
         <BottomNavigationAction
           label="Popular"
           icon={<WhatshotIcon />}
-          sx={{ color: "white", fontWeight: "bold", fontSize: "1.2rem" }}
+          sx={{
+            color: isActive("/") ? "#3A7ED2" : "white",
+            fontWeight: "bold",
+            fontSize: "1.2rem",
+          }}
+          onClick={() => navigate("/")}
         />
         <BottomNavigationAction
           label="On Air"
           icon={<TvIcon />}
-          sx={{ color: "white", fontWeight: "bold", fontSize: "1.2rem" }}
+          sx={{
+            color: isActive("/airing") ? "#3A7ED2" : "white",
+            fontWeight: "bold",
+            fontSize: "1.2rem",
+          }}
+          onClick={() => navigate("/airing")}
         />
         <BottomNavigationAction
           label="Upcoming"
           icon={<ScheduleIcon />}
-          sx={{ color: "white", fontWeight: "bold", fontSize: "1.2rem" }}
+          sx={{
+            color: isActive("/upcoming") ? "#3A7ED2" : "white",
+            fontWeight: "bold",
+            fontSize: "1.2rem",
+          }}
+          onClick={() => navigate("/upcoming")}
         />
         <BottomNavigationAction
           label="Favorites"
           icon={<FavoriteIcon />}
-          sx={{ color: "pink", fontWeight: "bold", fontSize: "1.2rem" }}
+          sx={{
+            color: isActive("/favorites") ? "#3A7ED2" : "pink",
+            fontWeight: "bold",
+            fontSize: "1.2rem",
+          }}
+          onClick={() => navigate("/favorites")}
         />
       </BottomNavigation>
     </Box>

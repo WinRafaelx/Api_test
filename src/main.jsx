@@ -6,6 +6,8 @@ import {
 } from "react-router-dom";
 import Homepage from "./pages/Homepage";
 import Upcomingpage from './pages/Upcomingpage';
+import Favoritepage from './pages/Favoritepage';
+import Airingpage from './pages/Airingpage';
 import { GlobalContextProvider } from './context/giobal';
 import { CssBaseline } from '@mui/material';
 
@@ -16,6 +18,12 @@ const router = createBrowserRouter([
   },{
     path: "/upcoming",
     element: <Upcomingpage />,
+  }, {
+    path: "/favorites",
+    element: <Favoritepage />,
+  }, {
+    path: "/airing",
+    element: <Airingpage />,
   }
 ]);
 

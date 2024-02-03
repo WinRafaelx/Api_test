@@ -24,8 +24,6 @@ export default function Upcoming() {
     setFavoritedAnimeIds(favorites.map((favorite) => favorite.id));
   }, [favorites, addFavorite, removeFavorite]);
 
-  console.log(upcomingAnime);
-
   const handleAddFavorite = (animeId, imageUrl) => {
     addFavorite(animeId, imageUrl);
     setFavoritedAnimeIds((prevIds) => [...prevIds, animeId]);

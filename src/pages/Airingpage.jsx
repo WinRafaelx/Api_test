@@ -1,8 +1,11 @@
 import React from 'react'
+import Navbar from '../components/Navbar'
 
 function Airingpage() {
   return (
-    <div>Airingpage</div>
+    <div>
+        <Navbar />
+        Airingpage</div>
   )
 }
 
