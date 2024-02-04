@@ -3,36 +3,21 @@ import { Link } from "react-router-dom";
 import { useGlobalContext } from "../../context/giobal";
 import Grid from "@mui/material/Grid";
 import { Typography } from "@mui/material";
-import { StyledImage, buttonStyles } from "./Styled";
+import { StyledImage, buttonStyles } from "../style/Styled";
+import AnimeFavorites from "./ManageFavorite";
 
 export default function Upcoming() {
   const {
     upcomingAnime,
     getUpcomingAnime,
-    addFavorite,
-    removeFavorite,
-    favorites,
   } = useGlobalContext();
 
-  const [favoritedAnimeIds, setFavoritedAnimeIds] = React.useState([]);
+  const { favoritedAnimeIds, handleAddFavorite, handleRemoveFavorite } = AnimeFavorites();
 
   useEffect(() => {
     getUpcomingAnime();
   }, [])
 
-  useEffect(() => {
-    setFavoritedAnimeIds(favorites.map((favorite) => favorite.id));
-  }, [favorites, addFavorite, removeFavorite]);
-
-  const handleAddFavorite = (animeId, imageUrl) => {
-    addFavorite(animeId, imageUrl);
-    setFavoritedAnimeIds((prevIds) => [...prevIds, animeId]);
-  };
-
-  const handleRemoveFavorite = (animeId) => {
-    removeFavorite(animeId);
-    setFavoritedAnimeIds((prevIds) => prevIds.filter((id) => id !== animeId));
-  };
 
   const conditionalRender = () => {
     return upcomingAnime?.map((anime) => (
@@ -49,7 +34,7 @@ export default function Upcoming() {
         </Link>
         {favoritedAnimeIds.includes(anime.mal_id) ? (
           <Typography
-            sx={{ ...buttonStyles, backgroundColor: "#E7F6C0" }}
+            sx={{ ...buttonStyles, backgroundColor: "#F2BDCB" }}
             onClick={() => handleRemoveFavorite(anime.mal_id)}
           >
             Favorited ✔

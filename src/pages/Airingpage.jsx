@@ -1,6 +1,6 @@
 import React from "react";
 import Navbar from "../components/Navbar";
-import Airing from "../components/Homepage/Airing";
+import Airing from "../components/pageComponent/Airing";
 
 function Airingpage() {
   return (

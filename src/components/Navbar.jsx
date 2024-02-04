@@ -15,15 +15,6 @@ export default function Navbar() {
   const isActive = (route) =>
     route === "/" ? location.pathname === route : location.pathname.startsWith(route);
 
-  useEffect(() => {
-    if (isActive("/")) setValue(0);
-    else if (isActive("/airing")) setValue(1);
-    else if (isActive("/upcoming")) setValue(2);
-    else if (isActive("/favorites")) setValue(3);
-  }, [location.pathname]);
-
-  const [value, setValue] = React.useState(0);
-
   return (
     <Box>
       <BottomNavigation

@@ -42,7 +42,7 @@ export const GlobalContextProvider = ({ children }) => {
     isSearch: false,
     searchResults: [],
     loading: false,
-    favorites: JSON.parse(localStorage.getItem("favorites")) || [],
+    favorites: [],
   };
 
   const [state, dispatch] = useReducer(reducer, intialState);
@@ -137,6 +137,7 @@ export const GlobalContextProvider = ({ children }) => {
 
   //initial render
   React.useEffect(() => {
+    state.favorites = JSON.parse(localStorage.getItem("favorites"));
     getPopularAnime();
   }, []);
 

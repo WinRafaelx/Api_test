@@ -1,41 +1,18 @@
-import React, {useEffect} from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { useGlobalContext } from "../../context/giobal";
 import Grid from "@mui/material/Grid";
 import { Typography } from "@mui/material";
-import { StyledImage, buttonStyles } from "./Styled";
+import { StyledImage, buttonStyles } from "../style/Styled";
+import AnimeFavorites from "./ManageFavorite";
 
-export default function Airing() {
-  const {
-    airingAnime,
-    getAiringAnime,
-    addFavorite,
-    removeFavorite,
-    favorites,
-  } = useGlobalContext();
+export default function Popular() {
+  const { popularAnime } = useGlobalContext();
 
-  const [favoritedAnimeIds, setFavoritedAnimeIds] = React.useState([]);
-
-  useEffect(() => {
-    getAiringAnime();
-  }, [])
-
-  useEffect(() => {
-    setFavoritedAnimeIds(favorites.map((favorite) => favorite.id));
-  }, [favorites, addFavorite, removeFavorite]);
-
-  const handleAddFavorite = (animeId, imageUrl) => {
-    addFavorite(animeId, imageUrl);
-    setFavoritedAnimeIds((prevIds) => [...prevIds, animeId]);
-  };
-
-  const handleRemoveFavorite = (animeId) => {
-    removeFavorite(animeId);
-    setFavoritedAnimeIds((prevIds) => prevIds.filter((id) => id !== animeId));
-  };
+  const { favoritedAnimeIds, handleAddFavorite, handleRemoveFavorite } = AnimeFavorites();
 
   const conditionalRender = () => {
-    return airingAnime?.map((anime) => (
+    return popularAnime?.map((anime) => (
       <Grid
         item
         key={anime.mal_id}
@@ -49,7 +26,7 @@ export default function Airing() {
         </Link>
         {favoritedAnimeIds.includes(anime.mal_id) ? (
           <Typography
-            sx={{ ...buttonStyles, backgroundColor: "#E7F6C0" }}
+            sx={{ ...buttonStyles, backgroundColor: "#F2BDCB" }}
             onClick={() => handleRemoveFavorite(anime.mal_id)}
           >
             Favorited ✔

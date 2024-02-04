@@ -1,6 +1,6 @@
 import React from "react";
 import Navbar from "../components/Navbar";
-import Popular from "../components/Homepage/Popular";
+import Popular from "../components/pageComponent/Popular";
 
 function Homepage() {
   return (
